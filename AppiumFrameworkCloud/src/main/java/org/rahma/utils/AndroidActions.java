@@ -1,4 +1,4 @@
-package org.rahulshettyacademy.utils;
+package org.rahma.utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;

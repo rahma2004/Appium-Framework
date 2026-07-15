@@ -9,24 +9,24 @@
   </groups>
 
 <listeners>
-<listener class-name="org.rahulshettyacademy.TestUtils.Listeners"/>
+<listener class-name="org.rahma.TestUtils.Listeners"/>
 </listeners>
 
   <test thread-count="5" name="End to end Framework Test">
     <classes>
-      <class name="org.rahulshettyacademy.eCommerce_tc_4_Hybrid"/>     
+      <class name="org.rahma.eCommerce_tc_4_Hybrid"/>     
     </classes>
   </test> <!-- Test -->
   
   <test thread-count="5" name="Error Validations Test">
     <classes>
-      <class name="org.rahulshettyacademy.eCommerce_tc_2"/>     
+      <class name="org.rahma.eCommerce_tc_2"/>     
     </classes>
   </test> <!-- Test -->
   
   <test thread-count="5" name="IOS Test">
     <classes>
-      <class name="org.rahulshettyacademy.IOSBasics"/>     
+      <class name="org.rahma.IOSBasics"/>     
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

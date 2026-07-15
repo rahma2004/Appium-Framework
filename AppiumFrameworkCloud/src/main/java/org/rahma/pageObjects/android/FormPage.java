@@ -1,10 +1,10 @@
-package org.rahulshettyacademy.pageObjects.android;
+package org.rahma.pageObjects.android;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.rahulshettyacademy.utils.AndroidActions;
+import org.rahma.utils.AndroidActions;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -26,7 +26,7 @@ public class FormPage extends AndroidActions{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this); //
 		
 	}
-	//	driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahul Shetty");
+	//	driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahma");
 	
 	
 	@AndroidFindBy(id="com.androidsample.generalstore:id/nameField")

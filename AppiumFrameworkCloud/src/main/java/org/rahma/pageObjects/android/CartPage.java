@@ -1,10 +1,10 @@
-package org.rahulshettyacademy.pageObjects.android;
+package org.rahma.pageObjects.android;
 
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.rahulshettyacademy.utils.AndroidActions;
+import org.rahma.utils.AndroidActions;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;

@@ -1,4 +1,4 @@
-package org.rahulshettyacademy.utils;
+package org.rahma.utils;
 
 import java.util.HashMap;
 import java.util.Map;

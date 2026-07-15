@@ -1,4 +1,4 @@
-package org.rahulshettyacademy;
+package org.rahma;
 
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.rahulshettyacademy.TestUtils.AndroidBaseTest;
+import org.rahma.TestUtils.AndroidBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -44,7 +44,7 @@ public class eCommerce_tc_2 extends AndroidBaseTest{
 	public void FillForm_ErrorValidation() throws InterruptedException
 	{
 		
-	//	driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahul Shetty");
+	//	driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahma");
 		driver.hideKeyboard();
 		driver.findElement(By.xpath("//android.widget.RadioButton[@text='Female']")).click();
 		driver.findElement(By.id("android:id/text1")).click();
@@ -65,7 +65,7 @@ public class eCommerce_tc_2 extends AndroidBaseTest{
 	
 	{
 		
-		driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahul Shetty");
+		driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Rahma");
 		driver.hideKeyboard();
 		driver.findElement(By.xpath("//android.widget.RadioButton[@text='Female']")).click();
 		driver.findElement(By.id("android:id/text1")).click();

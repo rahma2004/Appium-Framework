@@ -1,8 +1,8 @@
-package org.rahulshettyacademy.TestUtils;
+package org.rahma.TestUtils;
 
 import java.io.IOException;
 
-import org.rahulshettyacademy.utils.AppiumUtils;
+import org.rahma.utils.AppiumUtils;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;

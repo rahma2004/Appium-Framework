@@ -1,4 +1,4 @@
-package org.rahulshettyacademy;
+package org.rahma;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
@@ -11,8 +11,8 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
-import org.rahulshettyacademy.TestUtils.IOSBaseTest;
-import org.rahulshettyacademy.pageObjects.ios.AlertViews;
+import org.rahma.TestUtils.IOSBaseTest;
+import org.rahma.pageObjects.ios.AlertViews;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

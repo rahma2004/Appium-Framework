@@ -1,4 +1,4 @@
-package org.rahulshettyacademy;
+package org.rahma;
 
 
 import org.testng.annotations.Test;
@@ -28,10 +28,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.rahulshettyacademy.TestUtils.AndroidBaseTest;
-import org.rahulshettyacademy.pageObjects.android.CartPage;
-import org.rahulshettyacademy.pageObjects.android.FormPage;
-import org.rahulshettyacademy.pageObjects.android.ProductCatalogue;
+import org.rahma.TestUtils.AndroidBaseTest;
+import org.rahma.pageObjects.android.CartPage;
+import org.rahma.pageObjects.android.FormPage;
+import org.rahma.pageObjects.android.ProductCatalogue;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -78,15 +78,15 @@ public class eCommerce_tc_4_Hybrid extends AndroidBaseTest{
 	@DataProvider
 	public Object[][] getData() throws IOException
 	{
-		List<HashMap<String, String>>	data =getJsonData(System.getProperty("user.dir")+"//src//test//java//org//rahulshettyacademy//testData//eCommerce.json");
-	//	return new Object[][] { {"rahul shetty","female","Argentina"},{"shetty MR","male","Argentina"}  };
+		List<HashMap<String, String>>	data =getJsonData(System.getProperty("user.dir")+"//src//test//java//org//rahma//testData//eCommerce.json");
+	//	return new Object[][] { {"rahma","female","Argentina"},{"rahma MR","male","Argentina"}  };
 		
 		
 		return new Object[][] { {data.get(0)},{data.get(1)}  };
 	}
 	
 	
-	//key-name ,value - rahul shetty
+	//key-name ,value - rahma
 	// {   {hash},   {hash}    }   
 	
 	

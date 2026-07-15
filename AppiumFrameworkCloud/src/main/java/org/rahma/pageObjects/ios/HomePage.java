@@ -1,8 +1,8 @@
-package org.rahulshettyacademy.pageObjects.ios;
+package org.rahma.pageObjects.ios;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.rahulshettyacademy.utils.IOSActions;
+import org.rahma.utils.IOSActions;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;

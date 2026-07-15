@@ -1,6 +1,8 @@
-# Mobile App Automation Framework (Appium + Cloud)
+# Mobile App Automation Framework (Appium)
 
-A cross-platform mobile test automation framework built with Java, Appium, and TestNG. Supports both Android and iOS, runs locally or on BrowserStack's cloud device grid, and produces Extent Reports for test results.
+A cross-platform mobile test automation framework built with Java, Appium, and TestNG. Supports both Android and iOS, runs against a local Appium server, and produces Extent Reports for test results.
+
+Built and maintained by **Rahma**.
 
 ## Tech Stack
 - Java
@@ -8,35 +10,43 @@ A cross-platform mobile test automation framework built with Java, Appium, and T
 - TestNG
 - Page Object Model design
 - Extent Reports
-- BrowserStack (cloud device execution)
 - Maven
 
 ## Features
 - Page Object Model structure, separated by platform (`pageObjects/android`, `pageObjects/ios`)
 - Platform-specific base test classes (`AndroidBaseTest`, `IOSBaseTest`) handling Appium driver setup/teardown
-- Local Appium server bootstrap via `AppiumServiceBuilder`
-- Cloud execution support via BrowserStack (`browserstack.yml`, `browserstack-java-sdk`)
+- Automatic local Appium server bootstrap via `AppiumServiceBuilder`
 - Extent Reports integration with TestNG listeners for HTML test reporting
+- Screenshot capture on test failure
 - JSON-based test data loading (Jackson)
-- Screenshot capture on test actions
+- Hybrid app testing support (native + webview via chromedriver)
 - Configurable TestNG suites for Regression and Smoke runs (`testNGSuites/`)
-- Maven profiles to run different suites: `mvn test -PRegression` or `mvn test -PSmoke`
+- Maven profiles to run different suites
 
 ## Project Structure
 ```
-src/main/java/org/rahulshettyacademy/pageObjects/    - Page Object classes (Android & iOS)
-src/main/java/org/rahulshettyacademy/utils/          - Shared Appium utilities, Android/iOS action helpers
-src/main/java/org/rahulshettyacademy/resources/      - data.properties (device, ports, paths)
-src/test/java/org/rahulshettyacademy/                - Test classes (Android, iOS, hybrid e-commerce flows)
-src/test/java/org/rahulshettyacademy/TestUtils/       - Base test classes, Extent reporting, TestNG listeners
-src/test/java/org/rahulshettyacademy/testData/        - JSON test data
-src/test/java/org/rahulshettyacademy/resources/       - App binaries (.apk / .app) used as test fixtures
-testNGSuites/                                          - TestNG suite XML files (full regression, smoke)
+AppiumFrameworkCloud/
+├── src/main/java/org/rahma/pageObjects/   - Page Object classes (Android & iOS)
+├── src/main/java/org/rahma/utils/         - Shared Appium utilities, Android/iOS action helpers
+├── src/main/java/org/rahma/resources/     - data.properties (device, ports, paths)
+├── src/test/java/org/rahma/               - Test classes (Android, iOS, hybrid e-commerce flows)
+├── src/test/java/org/rahma/TestUtils/     - Base test classes, Extent reporting, TestNG listeners
+├── src/test/java/org/rahma/testData/      - JSON test data
+├── src/test/java/org/rahma/resources/     - App binaries (.apk / .app) used as test fixtures
+└── testNGSuites/                          - TestNG suite XML files (regression, smoke)
 ```
+
+## Prerequisites
+- JDK 8+
+- Maven
+- Node.js with Appium 2 installed (`npm install -g appium`)
+- Appium drivers: `appium driver install uiautomator2` (Android) and `appium driver install xcuitest` (iOS, macOS only)
+- Android SDK with an emulator or a real device (USB debugging enabled)
+- Xcode + iOS Simulator (for iOS tests, macOS only)
 
 ## Configuration
 
-Update `src/main/java/org/rahulshettyacademy/resources/data.properties` to match your local environment:
+Update `src/main/java/org/rahma/resources/data.properties` to match your local environment:
 
 ```
 ipAddress=127.0.0.1
@@ -48,23 +58,24 @@ appiumMainJsPath=<path to your Appium main.js>
 chromedriverPath=<path to your chromedriver executable>
 ```
 
-The iOS app path in `IOSBaseTest.java` (`options.setApp(...)`) currently points to a local file path and will need to be updated to match wherever the `.app` bundle is located on your machine.
+The framework starts the Appium server for you using these paths — no need to start it manually.
 
 ## Running Tests
 
+Full regression suite (Android e2e, error validations, iOS):
 ```
 mvn test -PRegression
 ```
-or
+
+Smoke suite (tests tagged with the `Smoke` group):
 ```
 mvn test -PSmoke
 ```
 
-Each profile points to a different TestNG suite XML file under `testNGSuites/`.
+Run a single suite file directly:
+```
+mvn test -Dsurefire.suiteXmlFiles=testNGSuites/testng.xml
+```
 
-## Reporting
-
-Test results are captured via Extent Reports (HTML) and TestNG's default reporting output, generated in `test-output/` after a run (excluded from version control).
-
-## Note on test app binaries
-This repo includes small Android (`.apk`) and iOS (`.app`) demo applications used purely as test fixtures for the automation scripts. They are not part of the framework's source code.
+## Reports
+After a run, the Extent HTML report is generated under `reports/` — open `index.html` in a browser. Screenshots for failed tests are attached automatically via the TestNG listener.

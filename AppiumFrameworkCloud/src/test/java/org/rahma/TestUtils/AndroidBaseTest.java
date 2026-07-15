@@ -1,8 +1,7 @@
-package org.rahulshettyacademy.TestUtils;
+package org.rahma.TestUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,8 +11,8 @@ import java.util.Properties;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
-import org.rahulshettyacademy.pageObjects.ios.HomePage;
-import org.rahulshettyacademy.utils.AppiumUtils;
+import org.rahma.pageObjects.android.FormPage;
+import org.rahma.utils.AppiumUtils;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -22,52 +21,47 @@ import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-public class IOSBaseTest extends AppiumUtils{
+public class AndroidBaseTest extends AppiumUtils{
 
-	public IOSDriver driver;
+	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
-	public HomePage homePage;
+	public FormPage formPage;
 	
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void ConfigureAppium() throws IOException
 	{
-		
 		Properties prop = new Properties();
-		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//org//rahulshettyacademy//resources//data.properties");
-				
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//org//rahma//resources//data.properties");
 		prop.load(fis);
-		String ipAddress = prop.getProperty("ipAddress");
+		String ipAddress = System.getProperty("ipAddress")!=null ? System.getProperty("ipAddress") : prop.getProperty("ipAddress");
 		String port = prop.getProperty("port");
 		String nodeBinPath = prop.getProperty("nodeBinPath");
 		String appiumMainJsPath = prop.getProperty("appiumMainJsPath");
 
 		service = startAppiumServer(ipAddress,Integer.parseInt(port), nodeBinPath, appiumMainJsPath);
 			
-				XCUITestOptions	 options = new XCUITestOptions();	
-				options.setDeviceName("iPhone 13 Pro");
-				options.setApp("/Users/drear/Desktop/UIKitCatalog.app");
-			//	options.setApp("//Users//drear//workingcode//Appium//src//test//java//resources//TestApp 3.app");
-				options.setPlatformVersion("15.5");
-				//Appium- Webdriver Agent -> IOS Apps.
-				options.setWdaLaunchTimeout(Duration.ofSeconds(20));
-				
-			 driver = new IOSDriver(service.getUrl(), options);
+								
+			UiAutomator2Options options = new UiAutomator2Options();
+			options.setDeviceName(prop.getProperty("AndroidDeviceNames")); //emulator
+			//options.setDeviceName("Android Device");// real device		
+			options.setChromedriverExecutable(prop.getProperty("chromedriverPath"));
+			options.setApp(System.getProperty("user.dir")+"//src//test//java//org//rahma//resources//GS.apk");
+
+			//options.setApp(System.getProperty("user.dir")+"//src//test//java//org//rahma//resources//General-Store.apk");
+			
+			 driver = new AndroidDriver(service.getUrl(), options);
 			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			 homePage = new HomePage(driver);
-			 
+			 formPage= new FormPage(driver);
 	}
 	
 	
-	
+
 
 	
-	
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void tearDown()
 	{
 		driver.quit();
